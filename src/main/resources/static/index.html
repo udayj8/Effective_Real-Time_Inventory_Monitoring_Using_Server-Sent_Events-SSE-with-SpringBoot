@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Updates</title>
+</head>
+<body>
+    <h1>Real-Time Inventory Updates</h1>
+    <div id="updates"></div>
+
+    <script>
+        // Establish SSE connection
+        const eventSource = new EventSource('/api/inventory/subscribe');
+
+        // Handle inventory updates
+        eventSource.addEventListener('inventory-update', (event) => {
+            const updatesDiv = document.getElementById('updates');
+            const newUpdate = document.createElement('div');
+            newUpdate.textContent = event.data;
+            updatesDiv.appendChild(newUpdate);
+        });
+
+        // Handle keep-alive messages
+        eventSource.addEventListener('keep-alive', () => {
+            console.log("Received keep-alive ping");
+        });
+
+        // Handle connection messages
+        eventSource.addEventListener('connection', (event) => {
+            console.log(event.data);
+        });
+
+        // Handle errors
+        eventSource.onerror = () => {
+            console.error("Connection lost, trying to reconnect...");
+        };
+    </script>
+</body>
+</html>
