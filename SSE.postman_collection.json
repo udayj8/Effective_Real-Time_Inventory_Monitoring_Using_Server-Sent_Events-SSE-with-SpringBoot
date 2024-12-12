@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "12231681-ac75-4a57-9f23-e7e47fa7bd93",
+		"name": "SSE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31306181"
+	},
+	"item": [
+		{
+			"name": "save the details",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"product\": \"Laptop\", \"status\": \"Back in Stock\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/inventory/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"inventory",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
